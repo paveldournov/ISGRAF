@@ -1,0 +1,39 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: 100%; height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+#app {
+    width: 100vw; height: 100vh;
+    position: relative;
+}
+
+#screen {
+    display: block;
+    width: 100%; height: 100%;
+    cursor: default;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+#screen:focus { outline: none; }
+
+/* The formula input sits over the canvas, styled retro */
+#textInput {
+    position: absolute;
+    display: none;
+    background: #000000;
+    color: #FFFF55;
+    border: none;
+    outline: none;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1;
+    padding: 0 2px;
+    caret-color: #FFFF55;
+    letter-spacing: 0;
+    z-index: 10;
+}
