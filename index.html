@@ -2,17 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ISGRF — Function Graph Analysis</title>
+    <title>ISGRF — Function Grapher</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app">
+<div id="app">
+
+    <aside id="sidebar">
+        <div id="sidebar-brand">ISGRF</div>
+
+        <div id="func-section">
+            <div id="func-add-row">
+                <div id="func-add-top">
+                    <select id="func-type">
+                        <option value="cartesian">Y(x) =</option>
+                        <option value="polar">R(φ) =</option>
+                    </select>
+                    <button id="func-add-btn" title="Add (Enter)">+ Add</button>
+                </div>
+                <input id="func-input" type="text" placeholder="e.g. sin(x)  or  x^2 - 1" autocomplete="off" spellcheck="false">
+            </div>
+            <div id="func-list"></div>
+        </div>
+
+        <div id="toolbar">
+            <button data-action="grid">Grid</button>
+            <button data-action="derivative">f′(x)</button>
+            <button data-action="roots">Roots</button>
+            <button data-action="cursor">Cursor</button>
+            <button data-action="reset-view">⌂ Reset</button>
+            <button data-action="clear">Clear all</button>
+        </div>
+
+        <div id="range-panel">
+            <div id="range-display"></div>
+        </div>
+
+        <div id="sidebar-hint">
+            Scroll to zoom · Drag to pan<br>
+            Double-click formula to edit<br>
+            PgUp / PgDn: view history
+        </div>
+    </aside>
+
+    <div id="sidebar-resizer"></div>
+
+    <main id="graph-area">
         <canvas id="screen" tabindex="0"></canvas>
-        <input id="textInput" type="text" autocomplete="off" spellcheck="false">
-    </div>
-    <script src="js/mathEngine.js"></script>
-    <script src="js/renderer.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/app.js"></script>
+        <div id="zoom-btns">
+            <button id="zoom-in" title="Zoom in">+</button>
+            <button id="zoom-out" title="Zoom out">−</button>
+        </div>
+        <div id="coords-overlay"></div>
+        <div id="toast"></div>
+    </main>
+
+</div>
+<script src="js/mathEngine.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
