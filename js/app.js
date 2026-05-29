@@ -37,6 +37,7 @@ class App {
         this._lastMouseCoords = null;
 
         this._setupSidebar();
+        this._setupRefPanel();
         this._setupToolbar();
         this._setupCanvasEvents();
         this._setupResizer();
@@ -112,6 +113,38 @@ class App {
         });
         this.funcAddBtn.addEventListener('click', () => this._commitAdd());
         this._renderSidebar();
+    }
+
+    _setupRefPanel() {
+        const header = document.getElementById('ref-header');
+        const panel = document.getElementById('ref-panel');
+        header.addEventListener('click', () => {
+            const collapsed = panel.classList.toggle('collapsed');
+            header.textContent = collapsed ? 'Reference ▶' : 'Reference ▼';
+        });
+
+        document.querySelectorAll('.ref-item').forEach(item => {
+            item.addEventListener('click', e => {
+                e.preventDefault();
+                const text = item.dataset.insert;
+                if (!text) return;
+
+                const input = this.funcInput;
+                const start = input.selectionStart;
+                const end = input.selectionEnd;
+                const val = input.value;
+
+                // Insert at cursor position or replace selection
+                input.value = val.slice(0, start) + text + val.slice(end);
+                
+                // Position cursor after inserted text
+                const newPos = start + text.length;
+                input.selectionStart = newPos;
+                input.selectionEnd = newPos;
+                
+                input.focus();
+            });
+        });
     }
 
     _commitAdd() {
